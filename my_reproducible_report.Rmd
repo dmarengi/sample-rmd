@@ -4,8 +4,8 @@ author: "A forward thinking researcher"
 date: '2023-01-17'
 output: 
   html_document: default
-  word_document: default
   pdf_document: default
+  word_document: default
 ---
 
 ## Overview 
@@ -28,6 +28,10 @@ In this code chunk, we are loading some relevant package libraries. By using the
 # Packages
 library(tidyverse)
 library(gapminder)
+library(kableExtra)
+
+# Create new data frame object
+data <- gapminder
 ```
 
 
@@ -35,9 +39,8 @@ library(gapminder)
 Below we create a faceted figure using the gapminder dataset. We use the chunk options to specify the figure output height and width, as well as to create a figure caption. Notice that we can also use markdown syntax to format the caption text (e.g., **bold face text**)
 
 ```{r, fig.height=7, fig.width=10, fig.cap="**Life expecetancy over time by country, stratified by continent.**", fig.pos="center"}
-
 # Create life expectancy by year figure
-ggplot(gapminder, aes(x = year, y = lifeExp, color = country)) +
+ggplot(data, aes(x = year, y = lifeExp, color = country)) +
   geom_line(show.legend = FALSE) +
   scale_x_continuous(
     expand = c(0, 0),
@@ -61,6 +64,42 @@ ggplot(gapminder, aes(x = year, y = lifeExp, color = country)) +
     panel.spacing.y = unit(1.5, "lines")
   )
 ```
+
+## How to embed a simple table (using the KableExtra package)
+
+Here's a walkthrough of what each line of code is doing:
+
+-   Reshape the `gapminder` dataset so it's in a long-data format
+-   Filter for only life expectancy values obtained for the year 2007
+-   Apply a group structure to the data frame (to compute grouped summary statistics)
+-   Compute some simple summary statistics, by continent
+-   Round to two decimal places across numeric columns
+-   Use the Kable package to generate a simple, but nicely formatted table
+
+```{r, R.options=list(width=50), warning=FALSE}
+data %>% 
+  pivot_longer(lifeExp:gdpPercap, names_to = "parameters", values_to = "values") %>% 
+  filter(year == 2007 & parameters == "lifeExp") %>% 
+  group_by(continent) %>% 
+  summarize(Mean = mean(values, na.rm = TRUE),
+            `Std. Dev` = sd(values, na.rm = TRUE),
+            `Min.`= min(values, na.rm = TRUE),
+            `Max.` = max(values, na.rm = TRUE)) %>% 
+  mutate(across(is.numeric, ~ round(., 2))) %>% 
+  kbl() %>% 
+  kable_classic()
+```
+
+
+
+
+
+
+
+
+
+
+
 
 
 ### Some examples of how you can embed quantitative statments into your file with LaTeX.
