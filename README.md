@@ -10,4 +10,4 @@
     
  
 
-Check out Jarvis' .Rmd file for a detailed look at how you to generate formatted tables with model output, and integrate them in `.Rmd` documents! The GitHub repo can be accessed here: <br> https://github.com/jarvischen01/id529-regression-models
+Check out Jarvis' .Rmd file for a detailed look at how to generate formatted tables with model output, and integrate them in `.Rmd` documents! The GitHub repo can be accessed here: <br> https://github.com/jarvischen01/id529-regression-models
