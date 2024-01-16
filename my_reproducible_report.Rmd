@@ -1,11 +1,8 @@
 ---
 title: "My Reproducible Report"
-author: "A forward thinking researcher"
-date: '2023-01-17'
-output: 
-  pdf_document: default
-  html_document: default
-  word_document: default
+author: "Dean Marengi"
+date: '2024-01-16'
+output: html_document
 ---
 
 ## Overview 
@@ -13,7 +10,7 @@ This file provides a quick look at how each component of an R Markdown file work
 
 Remember, R Markdown allows us to:
 
--   **Combine narriative text, code, and output** into a single document
+-   **Combine narrative text, code, and output** into a single document
 -   Incorporate mathematical expressions or equations
 -   And render/export the .Rmd file to a variety of output file formats!
 -   The YAML header specified in this `.Rmd` file enables us to render the output to:
@@ -38,7 +35,7 @@ data <- gapminder
 ## Create a plot in the below code chunk
 Below we create a faceted figure using the gapminder dataset. We use the chunk options to specify the figure output height and width, as well as to create a figure caption. Notice that we can also use markdown syntax to format the caption text (e.g., **bold face text**)
 
-```{r, fig.height=7, fig.width=10, fig.cap="**Life expecetancy over time by country, stratified by continent.**", fig.align="center"}
+```{r, fig.height=7, fig.width=10, fig.cap="**Life expectancy over time by country, stratified by continent.**", fig.align="center"}
 # Create life expectancy by year figure
 ggplot(data, aes(x = year, y = lifeExp, color = country)) +
   geom_line(show.legend = FALSE) +
@@ -72,9 +69,9 @@ Here's a walkthrough of what each line of code is doing:
 -   Reshape the `gapminder` dataset so it's in a long-data format
 -   Filter for only life expectancy values obtained for the year 2007
 -   Apply a group structure to the data frame (to compute grouped summary statistics)
--   Compute some simple summary statistics, by continent
+-   Compute some simple summary statistics by continent
 -   Round to two decimal places across numeric columns
--   Use the Kable package to generate a simple, but nicely formatted table
+-   Use the Kable package to generate a simple but nicely formatted table
 
 ```{r, R.options=list(width=50), warning=FALSE}
 data %>%
@@ -92,7 +89,7 @@ data %>%
 
 
 
-### Some examples of how you can embed quantitative statments into your file with LaTeX.
+### Some examples of how you can embed quantitative statements into your file with LaTeX.
 
 -   Enclosing the expression in pairs of two dollar signs (`$$`..`$$`) generates a stand-alone equation.
 $$
