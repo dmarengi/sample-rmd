@@ -1,11 +1,14 @@
 ---
 title: "My Reproducible Report"
 author: "Dean Marengi"
-date: '2024-01-16'
+date: "`r Sys.Date()`"
 output: html_document
+  # html_document:
+  #   theme: cerulean
 ---
 
-## Overview 
+## Overview
+
 This file provides a quick look at how each component of an R Markdown file works together to produce an integrated report.
 
 Remember, R Markdown allows us to:
@@ -18,7 +21,12 @@ Remember, R Markdown allows us to:
     -   A `pdf` file
     -   Or `html` file
 
+<br>
+
+-   **Gapminder dataset/R package:** <https://cran.r-project.org/web/packages/gapminder/vignettes/gapminder.html>
+
 ## Load packages
+
 In this code chunk, we are loading some relevant package libraries. By using the `include = FALSE` in our chunk options, we are telling the `.Rmd` file to exclude the code/output from the exported document.
 
 ```{r, include=FALSE}
@@ -31,8 +39,8 @@ library(kableExtra)
 data <- gapminder
 ```
 
-
 ## Create a plot in the below code chunk
+
 Below we create a faceted figure using the gapminder dataset. We use the chunk options to specify the figure output height and width, as well as to create a figure caption. Notice that we can also use markdown syntax to format the caption text (e.g., **bold face text**)
 
 ```{r, fig.height=7, fig.width=10, fig.cap="**Life expectancy over time by country, stratified by continent.**", fig.align="center"}
@@ -87,22 +95,17 @@ data %>%
   kable_classic()
 ```
 
-
-
 ### Some examples of how you can embed quantitative statements into your file with LaTeX.
 
--   Enclosing the expression in pairs of two dollar signs (`$$`..`$$`) generates a stand-alone equation.
-$$
-\begin{equation}
-\hat{Y}_i = \hat{\beta}_0 + \hat{\beta}_1 X_i + \hat{\epsilon}_i
-\end{equation}
-$$
+-   Enclosing the expression in pairs of two dollar signs (`$$`..`$$`) generates a stand-alone equation. $$
+    \begin{equation}
+    \hat{Y}_i = \hat{\beta}_0 + \hat{\beta}_1 X_i + \hat{\epsilon}_i
+    \end{equation}
+    $$
 -   In contrast, wrapping the expression in a pair of single dollar signs (`$`..`$`) creates an in-line quantitative expression.
 
 <br>
 
 -   This is some text with an in-line equation like $\hat{Y}_i = \hat{\beta}_0 + \hat{\beta}_1 X_i + \hat{\epsilon}_i$. Pretty cool, right?
 
-
-<br>
-<br>
+<br> <br>
